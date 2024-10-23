@@ -19,6 +19,7 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
         }
         .login-container h2 {
             text-align: center;
@@ -48,13 +49,20 @@
         .login-container input[type="submit"]:hover {
             background-color: #45a049;
         }
+        .greeting {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            color: #333;
+            display: none; /* Hidden initially */
+        }
     </style>
 </head>
 <body>
 
-    <div class="login-container">
+    <div class="login-container" id="loginBox">
         <h2>Login</h2>
-        <form action="/login" method="POST">
+        <form id="loginForm" onsubmit="return displayGreeting()">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>
 
@@ -64,6 +72,24 @@
             <input type="submit" value="Login">
         </form>
     </div>
+
+    <div class="greeting" id="greeting">Hello, Dear User!</div>
+
+    <script>
+        function displayGreeting() {
+            // Prevent form submission
+            event.preventDefault();
+            
+            // Hide the login box
+            document.getElementById('loginBox').style.display = 'none';
+            
+            // Display the "Hello, Dear User!" message
+            document.getElementById('greeting').style.display = 'block';
+            
+            // Return false to prevent form submission
+            return false;
+        }
+    </script>
 
 </body>
 </html>
